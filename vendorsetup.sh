@@ -1,10 +1,16 @@
-echo "Applying Brightness patch"
+echo "cloning common tree"
+git clone https://github.com/Dragon-s-Playground/device_realme_sm8250-common.git -b alpha-13 device/realme/sm8250-common
 
-cd frameworks/base || exit 1
-if git log -150 --oneline --decorate | grep "Fix brightness slider"; then
-	echo "Fix was already applied"
-else
-	git fetch https://github.com/ArrowOS/android_frameworks_base/ ca3ffbc964826616fe3f088e4fbab3f6ca070c19 && git cherry-pick FETCH_HEAD
-fi
+echo "cloning common vendor"
+git clone https://github.com/Dragon-s-Playground/vendor_realme_sm8250-common.git vendor/realme/sm8250-common
 
-cd ../..
+echo "cloning proprietary vendor"
+git clone https://github.com/Dragon-s-Playground/vendor_realme_rmx3371.git vendor/realme/rmx3371
+
+echo "cloning kernel"
+git clone https://github.com/Realme-SM8250/kernel_realme_sm8250.git -b test kernel/realme/sm8250
+
+echo "cloning oplus hals"
+git clone https://github.com/Dragon-s-Playground/android_hardware_oplus.git hardware/oplus
+
+git clone https://gitlab.com/ThankYouMario/proprietary_vendor_oplus_camera.git -b topaz-porsche vendor/oplus/camera
